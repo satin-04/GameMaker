@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.GridPane?>
+
+<BorderPane fx:id="window" maxHeight="800.0" maxWidth="1600.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamemaker.view.View" >
+   <top>
+      <Button id="undoBtn" fx:id="undoBtn" mnemonicParsing="false" onMouseClicked="#onUndoBtnClick" text="Undo" maxHeight="0" />
+      <Button id="redoBtn" fx:id="redoBtn" mnemonicParsing="false" onMouseClicked="#onRedoBtnClick" text="Redo" maxHeight="0" />
+      <Pane id="propertiesBar" fx:id="propertiesBar" prefHeight="100.0" prefWidth="975.0">
+         <children>
+            <SplitMenuButton id="createSprite" fx:id="createSpriteBtn" layoutX="104.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#onCreateSpriteClick" text="Create Sprite">
+               <items>
+                  <MenuItem fx:id="createSpriteMenuItem" mnemonicParsing="false" text="Create Sprite" />
+                  <MenuItem fx:id="editBackgroundMenuItem" mnemonicParsing="false" text="Edit Background" />
+
+               </items>
+            </SplitMenuButton>
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <Pane fx:id="mockGameCanvas" maxHeight="600" maxWidth="800" prefHeight="600" prefWidth="800">
+         <BorderPane.margin>
+            <Insets bottom="10.0" />
+         </BorderPane.margin>
+      </Pane>
+   </center>
+   <left>
+      <TabPane fx:id="configurationTabPane" maxHeight="660.0" prefHeight="660.0" prefWidth="406.0" tabClosingPolicy="UNAVAILABLE" translateY="15.0" BorderPane.alignment="CENTER">
+
+         <tabs>
+            <Tab fx:id="propertiesTab" closable="false" text="Properties">
+               <content>
+                  <VBox fx:id="propertyVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <Label text="Label:" />
+                              <TextField fx:id="propLabel" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <Label text="Position:" />
+                              <TextField fx:id="propPosX" prefHeight="25.0" prefWidth="40.0" promptText="X" />
+                              <TextField fx:id="propPosY" layoutX="233.0" layoutY="48.0" prefHeight="25.0" prefWidth="40.0" promptText="Y" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <Label text="Velocity:" />
+                              <TextField fx:id="propVelocityX" prefHeight="25.0" prefWidth="32.0" promptText="X" />
+                              <TextField fx:id="propVelocityY" layoutX="233.0" layoutY="48.0" prefHeight="25.0" prefWidth="32.0" promptText="Y" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="100.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <Label text="Dimensions:" />
+                              <TextField fx:id="propDimensionX" prefHeight="25.0" prefWidth="40.0" promptText="X" />
+                              <TextField fx:id="propDimensionY" layoutX="233.0" layoutY="48.0" prefHeight="25.0" prefWidth="40.0" promptText="Y" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <Label text="Shape:" />
+                              <MenuButton fx:id="propShape" mnemonicParsing="false" text="Circle">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Rectangle" />
+                                  <MenuItem mnemonicParsing="false" text="Circle" />
+                                   <MenuItem mnemonicParsing="false" text="Text" />
+                                </items>
+                              </MenuButton>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="310.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <Label text="Color:" />
+                              <ColorPicker fx:id="propColor" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="405.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <Label text="Visible:" />
+                              <CheckBox fx:id="propVisible" mnemonicParsing="false" selected="true" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="410.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                           <children>
+                              <Label text="Text:" />
+                              <TextField fx:id="propText" disable="true" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="submitPropertiesBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#onSubmitPropertiesClicked" text="Submit" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab fx:id="eventsTab" closable="false" text="Events">
+               <content>
+                  <Pane fx:id="eventActionBar" prefHeight="700.0" prefWidth="406.0" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="25.0" />
+                     </BorderPane.margin>
+                     <children>
+                        <MenuButton fx:id="modifyEventBtn" alignment="TOP_LEFT" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" text="Time-Based Events" translateX="70.0">
+                           <items>
+
+                           </items>
+                        </MenuButton>
+
+                        <Button fx:id="addEventBtn" layoutX="232.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onAddBehaviorBtnClick" prefHeight="23.0" prefWidth="79.0" text="Add(+)" />
+                        <ScrollPane fx:id="eventScrollPane" layoutX="13.0" layoutY="59.0" prefHeight="497.0" prefWidth="381.0" />
+                        <Button fx:id="submitEventsButton" layoutX="160.0" layoutY="576.0" mnemonicParsing="false" onMouseClicked="#onSubmitEventsClicked" text="Submit" />
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+            <Tab fx:id="backgroundTab" closable="false" text="Background Properties">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox fx:id="backgroundPropertyVBox" alignment="TOP_CENTER" layoutX="2.0" layoutY="2.0" prefHeight="628.0" prefWidth="403.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                                 <children>
+                                    <Label text="Color:" />
+                                    <ColorPicker fx:id="propBackgroundColor" />
+                                 </children>
+                              </HBox>
+                              <VBox>
+								<children>
+                              		<HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                                 		<children>
+                                    		<Label text="Soundtrack:" />
+                                    		<Button mnemonicParsing="false" onMouseClicked="#onChooseBackgroundTrackClicked" text="Choose File..." />
+                               			</children>
+                              		</HBox>
+                              		<Label fx:id="trackFilePath" prefWidth="350.0" text="No file selected. Select a *.wav or *.mp3 file." wrapText="true" />
+                              	</children>
+                              </VBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onMouseClicked="#onApplyChangesClicked" text="Apply Changes" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+         </tabs>
+         <BorderPane.margin>
+            <Insets left="25.0" />
+         </BorderPane.margin>
+      </TabPane>
+
+   </left>
+   <right>
+      <Pane id="appButtons" fx:id="appBtnContainer" layoutY="100.0" prefHeight="697.0" prefWidth="214.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="697.0" prefWidth="214.0" spacing="20.0">
+               <children>
+                  <Button id="playBtn" fx:id="playBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#onPlayBtnClick" text="Play" textAlignment="CENTER">
+                     <font>
+                        <Font name="Cambria" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button id="stopBtn" fx:id="stopBtn" mnemonicParsing="false" onMouseClicked="#onStopBtnClick" text="Stop" />
+                  <Button id="saveBtn" fx:id="saveBtn" mnemonicParsing="false" onMouseClicked="#onSaveBtnClick" text="Save" />
+                  <Button id="saveAsBtn" fx:id="saveAsBtn" mnemonicParsing="false" onMouseClicked="#onSaveAsBtnClick" text="Save As" />
+                  <Button id="loadBtn" fx:id="loadBtn" mnemonicParsing="false" onMouseClicked="#onLoadBtnClick" text="Load" />
+
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+         </children>
+      </Pane>
+   </right>
+
+</BorderPane>

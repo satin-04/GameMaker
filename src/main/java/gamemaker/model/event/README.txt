@@ -1,0 +1,3 @@
+Classes in the 'event' package are generally either:
+    1. An "event". A better name would really be "user-specified behavior". Each event holds a Sprite ID (so that it can be associated with a Sprite without causing saving issues) and an Action.
+    2. An "event handler". A better name would be "event detector". These both detect events and call the actions associated with them. These are only created when the game starts since they need to observe ticks in order to run.
